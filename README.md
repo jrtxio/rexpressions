@@ -1,142 +1,166 @@
-# RExpressions 正则表达式工具
+# RExpressions - Regex Testing Tool
 
-## 功能概述
+RExpressions is a GUI-based regular expression testing tool built with Racket, designed for **user control, privacy-first, and local-first** principles.
 
-RExpressions 是一个以**用户控制、隐私优先、本地优先**为核心的正则表达式辅助工具。它通过"上下文"模型组织工作流，集成受控 AI 辅助，并为未来协作与生态扩展预留架构。
+## Features
 
-## 核心概念
+### Core Functionality
 
-|术语|定义|
-|---|---|
-|**上下文（Context）**|一个独立工作单元，包含：唯一 ID（UUID）、名称、正则表达式、测试文本、创建/更新时间戳|
-|**AI 命名**|当上下文无用户指定名称时，系统调用 AI 基于正则+测试文本生成 ≤8 字中文标题|
-|**受控 AI 交互**|AI 默认无法访问用户数据；仅当用户使用 `@input` 或 `@current-regex` 时才提供上下文|
-|**本地优先存储**|所有数据首先持久化到本地文件；云功能为可选插件|
+- **Context Management**: Organize your regex work into independent contexts, each with its own regex pattern, test text, and metadata
+- **Real-time Testing**: Test regex patterns against your text with instant feedback
+- **Local-first Storage**: All data is persisted locally by default, with optional cloud sync planned
+- **Controlled AI Integration**: Optional AI assistance with user-controlled access to your data
+- **Cross-platform**: Works on Windows, macOS, and Linux
+- **Highlighted Matches**: Visual highlighting of matched text in the GUI
+- **Syntax Validation**: Real-time regex syntax checking and error reporting
 
-## 功能特性
+### Technical Highlights
 
-### V1 版本
+- **User-Centric Design**: Clean, intuitive three-panel interface
+- **Privacy-First**: AI only accesses data when explicitly requested
+- **Modular Architecture**: Easy to extend and customize
+- **Persistent Storage**: Automatic saving of all contexts
+- **UUID-based Contexts**: Unique identifiers for each work unit
 
-#### 上下文管理
-- ✅ 创建新空白上下文
-- ✅ 删除当前选中上下文
-- ✅ 自动生成 UUID v4
-- ✅ 本地持久化存储
-- ✅ 自动加载和保存
+## Installation
 
-#### 正则测试
-- ✅ 实时正则表达式语法校验
-- ✅ 多行测试文本编辑
-- ✅ 匹配结果黄色背景高亮
-- ✅ 全局匹配模式
-- ✅ 区分大小写
+### Prerequisites
 
-#### AI 对话
-- ✅ 支持 `@input` 提供测试文本
-- ✅ 支持 `@current-regex` 获取当前正则
-- ✅ AI 生成 `@regex{...}` 格式正则
-- ✅ 自动提取并应用 AI 生成的正则
+- [Racket 8.0+](https://racket-lang.org/download/)
 
-## 界面布局
+### Setup
+
+1. Clone or download the repository
+2. Run the application:
+   ```bash
+   racket main.rkt
+   ```
+
+## Usage
+
+### Basic Workflow
+
+1. **Create a Context**: Click the `+` button in the left panel to create a new context
+2. **Enter Regex**: Type your regular expression in the input field
+3. **Add Test Text**: Enter sample text to test your regex against
+4. **View Results**: Matched text will be highlighted in the test area
+5. **Save Changes**: All changes are automatically saved to local storage
+
+### Context Management
+
+- **Rename Contexts**: Double-click a context name to edit it
+- **Delete Contexts**: Select a context and click the `-` button
+- **Switch Contexts**: Click on any context in the list to switch
+
+### AI Assistance (Optional)
+
+RExpressions includes an optional AI assistant that can help with regex generation and testing:
+
+- Use `@input` to provide test text to AI
+- Use `@current-regex` to share your current regex with AI
+- AI responses with regex patterns will be automatically extracted and applied
+
+## Project Structure
 
 ```
-+------------------+--------------------------+------------------+
-|   上下文列表     |      正则测试区          |    AI 对话窗口   |
-| (左侧)           |      (中间)              |    (右侧)        |
-|                  |                          |                  |
-| • 提取邮箱       | [正则表达式输入框]       | [对话消息流]     |
-| • 日期匹配       |                          |                  |
-| • （未命名）     | [测试文本输入区]         | [用户输入框]     |
-|                  | （匹配结果高亮显示）     |                  |
-| [ + ]   [ − ]    |                          |                  |
-| （左下角按钮）   |                          |                  |
-+------------------+--------------------------+------------------+
-```
-
-## 技术实现
-
-### 项目结构
-
-```
-regexpressions/
-├── main.rkt              # 主程序入口
+rexpressions/
+├── main.rkt              # Main application entry point
 ├── core/
-│   ├── context.rkt       # 上下文数据结构与管理
-│   ├── regex-engine.rkt  # 正则表达式处理引擎
-│   └── storage.rkt       # 本地存储管理
+│   ├── context.rkt       # Context data structure and management
+│   ├── regex-engine.rkt  # Regex matching and validation
+│   └── storage.rkt       # Local storage implementation
 ├── gui/
-│   └── main-window.rkt   # 主窗口布局
+│   ├── main-window.rkt   # Main application window
+│   ├── context-panel.rkt # Context list panel
+│   ├── regex-panel.rkt   # Regex testing panel
+│   └── ai-panel.rkt      # AI assistant panel
 └── utils/
-    ├── uuid.rkt          # UUID 生成
-    └── ai-protocol.rkt   # AI 通信协议
+    ├── uuid.rkt          # UUID generation
+    └── ai-protocol.rkt   # AI communication protocol
 ```
 
-### 核心数据结构
+## Storage
 
-```racket
-(struct regex-context (
-  id          ; UUID v4
-  name        ; 名称，≤8 字中文
-  regex       ; 正则表达式
-  test-text   ; 测试文本
-  created-at  ; 创建时间戳
-  updated-at  ; 更新时间戳
-  metadata    ; 元数据（哈希表）
-) #:prefab)    ; 支持序列化
-```
-
-### 本地存储
+All contexts are stored locally in platform-specific locations:
 
 - **Windows**: `%APPDATA%\RExpressions\contexts.rktd`
 - **macOS**: `~/Library/Application Support/RExpressions/contexts.rktd`
 - **Linux**: `~/.local/share/RExpressions/contexts.rktd`
 
-## 运行方式
+## Technical Details
 
-```bash
-racket main.rkt
-```
+### Built With
 
-## 用户典型流程
+- [Racket](https://racket-lang.org/) - The primary programming language
+- [Racket GUI Library](https://docs.racket-lang.org/gui/overview.html) - For the graphical interface
+- [Racket Regex Engine](https://docs.racket-lang.org/guide/regexp.html) - For regex processing
 
-1. 启动 RExpressions → 自动创建空白上下文
-2. 在 AI 窗口输入："提取 URL，@input"（测试文本已粘贴）
-3. AI 返回 `@regex{https?://\S+}` → 自动填入 → 高亮匹配
-4. 点击【+】新建任务
-5. 切换回前一上下文 → 触发 AI 命名为 "URL 提取"
-6. 关闭应用 → 所有上下文保存至本地
-7. 重启后完整恢复
+### Architecture
 
-## 未来规划
+RExpressions follows a modular architecture with clear separation between:
 
-### V2+ 版本
-- ✅ 分享快照功能
-- ✅ Web 查看器
-- ✅ 团队协作
-- ✅ 正则模板市场
+1. **Core Logic**: Regex processing, context management, storage
+2. **GUI Components**: Panel implementations, event handling
+3. **Utilities**: Helper functions for UUID generation, AI communication
 
-## 技术特点
+## Development
 
-1. **本地优先**：所有数据首先持久化到本地文件
-2. **隐私保护**：AI 默认无法访问用户数据，仅响应显式命令
-3. **跨平台**：基于 Racket GUI，支持所有 Racket 支持的桌面操作系统
-4. **易于扩展**：模块化设计，支持未来功能扩展
-5. **用户友好**：直观的三栏布局，实时反馈
+### Getting Started
 
-## 开发说明
+1. Install [DrRacket](https://racket-lang.org/download/) or the Racket command-line tools
+2. Open the project in DrRacket or your preferred editor
+3. Run `racket main.rkt` to start the application
 
-### 依赖
-- Racket 8.0+
-- racket/gui 库
+### Contributing
 
-### 开发环境
-- DrRacket（推荐）
-- 或命令行 racket 解释器
+Contributions are welcome! Please feel free to submit issues, feature requests, or pull requests.
 
-## 许可证
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-MIT License
+### Code Style
 
-## 贡献
+- Follow existing code style conventions
+- Write clear, concise comments for complex logic
+- Add tests for new functionality when appropriate
 
-欢迎提交 Issue 和 Pull Request！
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Roadmap
+
+### Version 1.0
+- ✅ Core regex testing functionality
+- ✅ Context management
+- ✅ Local storage
+- ✅ Basic AI integration
+- ✅ Cross-platform support
+
+### Version 2.0
+- 🔄 Shareable context snapshots
+- 🔄 Web viewer for shared contexts
+- 🔄 Enhanced AI capabilities
+- 🔄 Improved highlighting and navigation
+
+### Future Plans
+- 🔄 Team collaboration features
+- 🔄 Regex template marketplace
+- 🔄 Optional cloud sync
+- 🔄 Plugin system for extending functionality
+
+## Contact
+
+For issues or questions, please open an issue on the GitHub repository.
+
+## Acknowledgments
+
+- Built with ❤️ using [Racket](https://racket-lang.org/)
+- Inspired by various regex testing tools with a focus on user privacy and control
+
+---
+
+**RExpressions** - Empowering users with powerful regex tools while respecting privacy and control.
