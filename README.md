@@ -13,7 +13,7 @@
 
 RegexMate is a lightweight, GUI-based regular expression testing tool built with Racket, designed for developers who value **user control, privacy-first, and local-first** principles.
 
-With RegexMate, you can easily test and debug regular expressions with real-time feedback, organize your work into contexts, and leverage optional AI assistance - all while keeping your data local and secure.
+With RegexMate, you can easily test and debug regular expressions with real-time feedback, organize your work into contexts, and leverage AI assistance - all while keeping your data local and secure.
 
 ## ✨ Features
 
@@ -25,7 +25,7 @@ With RegexMate, you can easily test and debug regular expressions with real-time
 - **Local-first Storage**: All data persisted locally by default
 - **Cross-platform**: Works on Windows, macOS, and Linux
 
-### AI Integration (Optional)
+### AI Integration
 - **Controlled AI Access**: AI only accesses data when explicitly requested
 - **Regex Generation**: Generate regex patterns with AI assistance
 - **Smart Suggestions**: Get AI-powered suggestions for regex improvements
