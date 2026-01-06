@@ -180,7 +180,7 @@
     
     ;; 创建新增按钮
     (new button% [parent button-panel]
-         [label "+ 新建"]
+         [label "+"]
          [font FONT_NORMAL]
          [min-width 60]
          [callback (lambda (widget event) 
@@ -188,7 +188,7 @@
     
     ;; 创建删除按钮
     (new button% [parent button-panel]
-         [label "- 删除"]
+         [label "-"]
          [font FONT_NORMAL]
          [min-width 60]
          [callback (lambda (widget event) 

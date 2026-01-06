@@ -15,7 +15,7 @@
     [(not (valid-regex? regex)) '()]
     [else
      ;; 使用 pregexp 函数编译正则表达式，然后进行匹配
-     (regexp-match* (pregexp regex) text #:match-select values)]))
+     (regexp-match* (pregexp regex) text)]))
 
 ;; 执行正则匹配，返回匹配位置信息
 (define (match-regex-positions regex text)

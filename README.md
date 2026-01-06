@@ -1,6 +1,11 @@
-# RExpressions - Regex Testing Tool
+# RegexMate - Regex Testing Tool
 
-RExpressions is a GUI-based regular expression testing tool built with Racket, designed for **user control, privacy-first, and local-first** principles.
+## Language Support
+
+- **English**: This document
+- **中文**: [README_zh.md](README_zh.md)
+
+RegexMate is a GUI-based regular expression testing tool built with Racket, designed for **user control, privacy-first, and local-first** principles.
 
 ## Features
 
@@ -54,7 +59,7 @@ RExpressions is a GUI-based regular expression testing tool built with Racket, d
 
 ### AI Assistance (Optional)
 
-RExpressions includes an optional AI assistant that can help with regex generation and testing:
+RegexMate includes an optional AI assistant that can help with regex generation and testing:
 
 - Use `@input` to provide test text to AI
 - Use `@current-regex` to share your current regex with AI
@@ -83,9 +88,9 @@ rexpressions/
 
 All contexts are stored locally in platform-specific locations:
 
-- **Windows**: `%APPDATA%\RExpressions\contexts.rktd`
-- **macOS**: `~/Library/Application Support/RExpressions/contexts.rktd`
-- **Linux**: `~/.local/share/RExpressions/contexts.rktd`
+- **Windows**: `%APPDATA%\RegexMate\contexts.rktd`
+- **macOS**: `~/Library/Application Support/RegexMate/contexts.rktd`
+- **Linux**: `~/.local/share/RegexMate/contexts.rktd`
 
 ## Technical Details
 
@@ -97,7 +102,7 @@ All contexts are stored locally in platform-specific locations:
 
 ### Architecture
 
-RExpressions follows a modular architecture with clear separation between:
+RegexMate follows a modular architecture with clear separation between:
 
 1. **Core Logic**: Regex processing, context management, storage
 2. **GUI Components**: Panel implementations, event handling
@@ -163,4 +168,4 @@ For issues or questions, please open an issue on the GitHub repository.
 
 ---
 
-**RExpressions** - Empowering users with powerful regex tools while respecting privacy and control.
+**RegexMate** - Empowering users with powerful regex tools while respecting privacy and control.

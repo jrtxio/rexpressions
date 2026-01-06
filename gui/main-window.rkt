@@ -26,7 +26,7 @@
     (field [current-context #f])
     
     ;; 初始化
-    (super-new [label "RExpressions"]
+    (super-new [label "RegexMate"]
                [width 1200]
                [height 600]
                [alignment '(left top)])

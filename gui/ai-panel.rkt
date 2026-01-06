@@ -11,6 +11,7 @@
   (field [chat-text-editor #f])
   (field [chat-text-canvas #f])
   (field [user-input-field #f])
+  (field [send-button #f])
   (field [on-send-message-callback #f])
   
   ;; 初始化
@@ -18,9 +19,6 @@
              [border SPACING_PANEL]
              [stretchable-width #t]
              [stretchable-height #t])
-  
-  ;; 创建标题
-  (new message% [parent this] [label "AI 对话窗口"] [font FONT_TITLE])
   
   ;; 发送消息事件
   (define (on-send-message)
@@ -32,9 +30,9 @@
       ;; 添加用户消息
       (append-message "用户" message)
       
-      ;; 调用回调
-      (when on-send-message-callback
-        (on-send-message-callback message))))
+      ;; 显示功能开发中提示
+      (append-message "AI" "AI功能正在开发中，敬请期待！")
+      ))
   
   ;; 追加消息到对话
   (define/public (append-message sender content)
@@ -61,7 +59,7 @@
   (send chat-text-editor set-max-undo-history 0)
   
   ;; 初始欢迎消息
-  (append-message "AI" "你好，我可以帮助你编写正则表达式。使用 @input 提供测试文本，或 @current-regex 获取当前正则。")
+  (append-message "AI" "你好，AI功能正在开发中，敬请期待！")
   
   ;; 创建用户输入区
   (define input-panel (new horizontal-panel% 
@@ -82,12 +80,12 @@
                                            (on-send-message)))]))
   
   ;; 创建发送按钮
-  (new button% [parent input-panel]
+  (set! send-button (new button% [parent input-panel]
        [label "发送"]
        [min-width 60]
        [min-height COMPONENT_HEIGHT]
        [callback (lambda (widget event) 
-                   (on-send-message))])
+                   (on-send-message))]))
   
   ;; 设置发送消息回调
   (define/public (set-on-send-message-callback callback)

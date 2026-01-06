@@ -10,7 +10,7 @@
 
 ;; 获取操作系统特定的存储路径
 (define (get-storage-path)
-  (define app-name "RExpressions")
+  (define app-name "RegexMate")
   (cond
     [(eq? (system-type) 'windows)
      (build-path (getenv "APPDATA") app-name "contexts.rktd")]
@@ -69,5 +69,5 @@
 (define (get-context-by-id ctx-id)
   (findf (lambda (ctx) (equal? (regex-context-id ctx) ctx-id)) (current-contexts)))
 
-;; 导出函数
-(provide initialize-storage save-contexts add-context remove-context update-context-in-storage get-contexts get-context-by-id)
+;; 导出函数和参数
+(provide initialize-storage save-contexts add-context remove-context update-context-in-storage get-contexts get-context-by-id current-contexts)
