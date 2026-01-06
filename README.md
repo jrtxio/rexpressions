@@ -9,73 +9,84 @@
   </a>
 </div>
 
-RegexMate is a GUI-based regular expression testing tool built with Racket, designed for **user control, privacy-first, and local-first** principles.
+## 📖 About
 
-## Features
+RegexMate is a lightweight, GUI-based regular expression testing tool built with Racket, designed for developers who value **user control, privacy-first, and local-first** principles.
+
+With RegexMate, you can easily test and debug regular expressions with real-time feedback, organize your work into contexts, and leverage optional AI assistance - all while keeping your data local and secure.
+
+## ✨ Features
 
 ### Core Functionality
-
-- **Context Management**: Organize your regex work into independent contexts, each with its own regex pattern, test text, and metadata
-- **Real-time Testing**: Test regex patterns against your text with instant feedback
-- **Local-first Storage**: All data is persisted locally by default, with optional cloud sync planned
-- **Controlled AI Integration**: Optional AI assistance with user-controlled access to your data
-- **Cross-platform**: Works on Windows, macOS, and Linux
-- **Highlighted Matches**: Visual highlighting of matched text in the GUI
+- **Real-time Testing**: Instant feedback on regex matches
+- **Context Management**: Organize regex work into independent contexts
+- **Highlighted Matches**: Visual highlighting of matched text
 - **Syntax Validation**: Real-time regex syntax checking and error reporting
+- **Local-first Storage**: All data persisted locally by default
+- **Cross-platform**: Works on Windows, macOS, and Linux
 
-### Technical Highlights
+### AI Integration (Optional)
+- **Controlled AI Access**: AI only accesses data when explicitly requested
+- **Regex Generation**: Generate regex patterns with AI assistance
+- **Smart Suggestions**: Get AI-powered suggestions for regex improvements
 
-- **User-Centric Design**: Clean, intuitive three-panel interface
-- **Privacy-First**: AI only accesses data when explicitly requested
+### Design Principles
+- **User-Centric**: Clean, intuitive three-panel interface
+- **Privacy-First**: No data leaves your machine without permission
 - **Modular Architecture**: Easy to extend and customize
 - **Persistent Storage**: Automatic saving of all contexts
-- **UUID-based Contexts**: Unique identifiers for each work unit
 
-## Installation
+## 🚀 Getting Started
 
 ### Prerequisites
 
 - [Racket 8.0+](https://racket-lang.org/download/)
 
-### Setup
+### Installation
 
 1. Clone or download the repository
-2. Run the application:
-   ```bash
-   racket main.rkt
-   ```
 
-## Usage
+```bash
+git clone https://github.com/your-username/regexmate.git
+cd regexmate
+```
+
+2. Run the application
+
+```bash
+racket main.rkt
+```
+
+## 📖 Usage
 
 ### Basic Workflow
 
-1. **Create a Context**: Click the `+` button in the left panel to create a new context
-2. **Enter Regex**: Type your regular expression in the input field
-3. **Add Test Text**: Enter sample text to test your regex against
-4. **View Results**: Matched text will be highlighted in the test area
-5. **Save Changes**: All changes are automatically saved to local storage
+1. **Create a Context**: Click the `+` button in the left panel
+2. **Enter Regex**: Type your regex pattern in the input field
+3. **Add Test Text**: Enter sample text to test against
+4. **View Results**: Matched text will be highlighted automatically
+5. **Save Changes**: All changes are saved automatically
 
 ### Context Management
 
-- **Rename Contexts**: Double-click a context name to edit it
+- **Rename Contexts**: Double-click a context name
 - **Delete Contexts**: Select a context and click the `-` button
-- **Switch Contexts**: Click on any context in the list to switch
+- **Switch Contexts**: Click any context in the list
 
-### AI Assistance (Optional)
+### AI Assistance
 
-RegexMate includes an optional AI assistant that can help with regex generation and testing:
+1. Type your request in the AI panel
+2. Use `@input` to share your test text
+3. Use `@current-regex` to share your current regex
+4. AI responses with regex patterns will be automatically extracted
 
-- Use `@input` to provide test text to AI
-- Use `@current-regex` to share your current regex with AI
-- AI responses with regex patterns will be automatically extracted and applied
-
-## Project Structure
+## 📁 Project Structure
 
 ```
-rexpressions/
+regexmate/
 ├── main.rkt              # Main application entry point
 ├── core/
-│   ├── context.rkt       # Context data structure and management
+│   ├── context.rkt       # Context management
 │   ├── regex-engine.rkt  # Regex matching and validation
 │   └── storage.rkt       # Local storage implementation
 ├── gui/
@@ -88,36 +99,12 @@ rexpressions/
     └── ai-protocol.rkt   # AI communication protocol
 ```
 
-## Storage
+## 🛠️ Development
 
-All contexts are stored locally in platform-specific locations:
+### Setup
 
-- **Windows**: `%APPDATA%\RegexMate\contexts.rktd`
-- **macOS**: `~/Library/Application Support/RegexMate/contexts.rktd`
-- **Linux**: `~/.local/share/RegexMate/contexts.rktd`
-
-## Technical Details
-
-### Built With
-
-- [Racket](https://racket-lang.org/) - The primary programming language
-- [Racket GUI Library](https://docs.racket-lang.org/gui/overview.html) - For the graphical interface
-- [Racket Regex Engine](https://docs.racket-lang.org/guide/regexp.html) - For regex processing
-
-### Architecture
-
-RegexMate follows a modular architecture with clear separation between:
-
-1. **Core Logic**: Regex processing, context management, storage
-2. **GUI Components**: Panel implementations, event handling
-3. **Utilities**: Helper functions for UUID generation, AI communication
-
-## Development
-
-### Getting Started
-
-1. Install [DrRacket](https://racket-lang.org/download/) or the Racket command-line tools
-2. Open the project in DrRacket or your preferred editor
+1. Install [DrRacket](https://racket-lang.org/download/) or Racket CLI tools
+2. Open the project in your preferred editor
 3. Run `racket main.rkt` to start the application
 
 ### Contributing
@@ -130,46 +117,19 @@ Contributions are welcome! Please feel free to submit issues, feature requests, 
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-### Code Style
-
-- Follow existing code style conventions
-- Write clear, concise comments for complex logic
-- Add tests for new functionality when appropriate
-
-## License
+## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## Roadmap
+## 🤝 Contributing
 
-### Version 1.0
-- ✅ Core regex testing functionality
-- ✅ Context management
-- ✅ Local storage
-- ✅ Basic AI integration
-- ✅ Cross-platform support
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
-### Version 2.0
-- 🔄 Shareable context snapshots
-- 🔄 Web viewer for shared contexts
-- 🔄 Enhanced AI capabilities
-- 🔄 Improved highlighting and navigation
-
-### Future Plans
-- 🔄 Team collaboration features
-- 🔄 Regex template marketplace
-- 🔄 Optional cloud sync
-- 🔄 Plugin system for extending functionality
-
-## Contact
+## 📞 Contact
 
 For issues or questions, please open an issue on the GitHub repository.
 
-## Acknowledgments
+## 🙏 Acknowledgments
 
 - Built with ❤️ using [Racket](https://racket-lang.org/)
 - Inspired by various regex testing tools with a focus on user privacy and control
-
----
-
-**RegexMate** - Empowering users with powerful regex tools while respecting privacy and control.
