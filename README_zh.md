@@ -1,9 +1,13 @@
 # RegexMate - 正则表达式测试工具
 
-## 语言支持
-
-- **English**: [README.md](README.md)
-- **中文**: 本文档
+<div align="center">
+  <a href="README.md">
+    <img alt="English" src="https://img.shields.io/badge/Language-English-blue.svg?style=flat-square">
+  </a>
+  <a href="#readme">
+    <img alt="中文" src="https://img.shields.io/badge/语言-中文-red.svg?style=flat-square">
+  </a>
+</div>
 
 RegexMate是一个基于Racket构建的GUI正则表达式测试工具，设计遵循**用户控制、隐私优先、本地优先**的原则。
 

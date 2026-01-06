@@ -1,9 +1,13 @@
 # RegexMate - Regex Testing Tool
 
-## Language Support
-
-- **English**: This document
-- **中文**: [README_zh.md](README_zh.md)
+<div align="center">
+  <a href="#readme">
+    <img alt="English" src="https://img.shields.io/badge/Language-English-blue.svg?style=flat-square">
+  </a>
+  <a href="README_zh.md">
+    <img alt="中文" src="https://img.shields.io/badge/语言-中文-red.svg?style=flat-square">
+  </a>
+</div>
 
 RegexMate is a GUI-based regular expression testing tool built with Racket, designed for **user control, privacy-first, and local-first** principles.
 
